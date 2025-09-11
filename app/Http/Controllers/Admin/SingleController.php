@@ -12,7 +12,7 @@ class SingleController extends Controller
      */
     public function index()
     {
-        //
+        echo ('è la index');
     }
 
     /**

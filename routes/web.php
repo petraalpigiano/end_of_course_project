@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AlbumController;
+use App\Http\Controllers\Admin\EpController;
+use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\SingleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::resource('albums', AlbumController::class);
+Route::resource('singles', SingleController::class);
+Route::resource('eps', EpController::class);
+Route::resource('genres', GenreController::class);
+
+require __DIR__ . '/auth.php';
