@@ -15,8 +15,8 @@ class AlbumController extends Controller
     public function index()
     {
         $albums = Album::all();
-        dd($albums);
-        return view('prova.index', compact('albums'));
+        // dd($albums);
+        return view('albums.index', compact('albums'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AlbumController extends Controller
     public function create()
     {
         $genres = Genre::all();
-        return view('prova.create', compact('genres'));
+        return view('albums.create', compact('genres'));
     }
 
     /**
@@ -34,20 +34,19 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $newAlbum = new Album();
 
-        if ($request->has('genre_id')) {
-            $newAlbum->genre_id = $data['genre_id'];
-        }
+
+        $newAlbum->genre_id = $data['genre_id'];
         $newAlbum->name = $data['name'];
         $newAlbum->published_year = $data['published_year'];
         $newAlbum->n_songs = $data['n_songs'];
 
         $newAlbum->save();
 
-        return redirect()->route('prova.show', $newAlbum->id);
+        return redirect()->route('albums.show', $newAlbum->id);
     }
 
     /**
@@ -56,7 +55,7 @@ class AlbumController extends Controller
     public function show(Album $album)
     {
         // dd($album);
-        return view('prova.show', compact('album'));
+        return view('albums.show', compact('album'));
     }
 
     /**
@@ -66,7 +65,7 @@ class AlbumController extends Controller
     {
         $genres = Genre::all();
         // dd($album);
-        return view('prova.create', compact('album', 'genres'));
+        return view('albums.edit', compact('album', 'genres'));
     }
 
     /**
@@ -75,19 +74,16 @@ class AlbumController extends Controller
     public function update(Request $request, Album $album)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
-
-        if ($request->has('genre_id')) {
-            $album->genre_id = $data['genre_id'];
-        }
+        $album->genre_id = $data['genre_id'];
         $album->name = $data['name'];
         $album->published_year = $data['published_year'];
         $album->n_songs = $data['n_songs'];
 
         $album->update();
 
-        return redirect()->route('prova.show', $album->id);
+        return redirect()->route('albums.show', $album->id);
     }
 
     /**
@@ -97,6 +93,6 @@ class AlbumController extends Controller
     {
         $album->delete();
 
-        return redirect()->route('prova.index');
+        return redirect()->route('albums.index');
     }
 }
