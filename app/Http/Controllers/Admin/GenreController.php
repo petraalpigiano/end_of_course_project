@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -12,7 +13,9 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $genres = Genre::all();
+        dd($genres);
+        return view('prova.index', compact('genres'));
     }
 
     /**
@@ -20,7 +23,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('prova.create');
     }
 
     /**
@@ -28,38 +31,58 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        dd($data);
+
+        $newGenre = new Genre();
+
+        $newGenre->name = $data['name'];
+
+        $newGenre->save();
+
+        return redirect()->route('prova.show', $newGenre->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Genre $genre)
     {
-        //
+        // dd($genre);
+        return view('prova.show', compact('genre'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Genre $genre)
     {
-        //
+        // dd($genre);
+        return view('prova.create', compact('genre'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Genre $genre)
     {
-        //
+        $data = $request->all();
+        dd($data);
+
+        $genre->name = $data['name'];
+
+        $genre->update();
+
+        return redirect()->route('prova.show', $genre->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+
+        return redirect()->route('prova.index');
     }
 }
