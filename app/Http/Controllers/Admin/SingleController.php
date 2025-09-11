@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
+use App\Models\Single;
 use Illuminate\Http\Request;
 
 class SingleController extends Controller
@@ -12,7 +14,9 @@ class SingleController extends Controller
      */
     public function index()
     {
-        echo ('è la index');
+        $singles = Single::all();
+        dd($singles);
+        return view('prova.index', compact('singles'));
     }
 
     /**
@@ -20,7 +24,8 @@ class SingleController extends Controller
      */
     public function create()
     {
-        //
+        $genres = Genre::all();
+        return view('prova.create', compact('genres'));
     }
 
     /**
@@ -28,38 +33,68 @@ class SingleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        dd($data);
+
+        $newSingle = new Single();
+
+        if ($request->has('genre_id')) {
+            $newSingle->genre_id = $data['genre_id'];
+        }
+        $newSingle->name = $data['name'];
+        $newSingle->published_year = $data['published_year'];
+
+        $newSingle->save();
+
+        return redirect()->route('prova.show', $newSingle->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Single $single)
     {
-        //
+        // dd($single);
+        return view('prova.show', compact('single', 'genres'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Single $single)
     {
-        //
+        $genres = Genre::all();
+        // dd($single);
+        return view('prova.create', compact('single', 'genres'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Single $single)
     {
-        //
+        $data = $request->all();
+        dd($data);
+
+
+        if ($request->has('genre_id')) {
+            $single->genre_id = $data['genre_id'];
+        }
+        $single->name = $data['name'];
+        $single->published_year = $data['published_year'];
+
+        $single->update();
+
+        return redirect()->route('prova.show', $single->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Single $single)
     {
-        //
+        $single->delete();
+
+        return redirect()->route('prova.index');
     }
 }

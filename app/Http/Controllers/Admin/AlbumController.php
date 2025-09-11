@@ -56,7 +56,7 @@ class AlbumController extends Controller
     public function show(Album $album)
     {
         // dd($album);
-        return view('prova.show', compact('album', 'genres'));
+        return view('prova.show', compact('album'));
     }
 
     /**
