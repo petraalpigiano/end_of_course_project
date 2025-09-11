@@ -15,14 +15,19 @@ class EpsTableSeeder extends Seeder
     {
         $eps = [
             [
-                'name' => '',
-                'published_year' => '',
-                'n_songs' => '',
+                'name' => 'Before Everything Changes',
+                'published_year' => 2023,
+                'n_songs' => 5,
             ],
             [
-                'name' => '',
-                'published_year' => '',
-                'n_songs' => '',
+                'name' => 'Momentum',
+                'published_year' => 2017,
+                'n_songs' => 4,
+            ],
+            [
+                'name' => 'First Steps',
+                'published_year' => 2016,
+                'n_songs' => 4,
             ]
         ];
 

@@ -14,15 +14,31 @@ class AlbumsTableSeeder extends Seeder
     public function run(): void
     {
         $albums = [
+
             [
-                'name' => '',
-                'published_year' => '',
-                'n_songs' => '',
+                'name' => 'Shape & Form (Deluxe)',
+                'published_year' => 2022,
+                'n_songs' => 17,
             ],
             [
-                'name' => '',
-                'published_year' => '',
-                'n_songs' => '',
+                'name' => 'Shape & Form',
+                'published_year' => 2022,
+                'n_songs' => 14,
+            ],
+            [
+                'name' => 'Max Maco Is Dead Right?',
+                'published_year' => 2021,
+                'n_songs' => 13,
+            ],
+            [
+                'name' => 'Pink',
+                'published_year' => 2020,
+                'n_songs' => 13,
+            ],
+            [
+                'name' => 'A 20 Something Fuck',
+                'published_year' => 2018,
+                'n_songs' => 8,
             ]
         ];
 
