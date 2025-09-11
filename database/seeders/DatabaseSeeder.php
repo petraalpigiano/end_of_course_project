@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([AlbumsTableSeeder::class, EpsTableSeeder::class, SinglesTableSeeder::class]);
+        $this->call([GenresTableSeeder::class]);
     }
 }
