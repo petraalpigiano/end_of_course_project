@@ -10,8 +10,14 @@
                     aria-describedby="title">
 
             </div>
-            <input type="number" name="published_year">
-            <input type="number" name="n_songs">
+            <div>
+                <label for="inputYear" class="form-label">Anno</label>
+                <input type="text" class="form-control" id="inputYear" name="published_year">
+            </div>
+            <div>
+                <label for="inputYear" class="form-label">Canzoni</label>
+                <input type="text" class="form-control" id="inputYear" name="n_songs">
+            </div>
             <select name="genre_id" class="form-select " aria-label="Default select example">
                 <option value="">Scegli un genere</option>
                 @foreach ($genres as $genre)
@@ -29,7 +35,7 @@
 
 
             <div class="my-2">
-                <a class="btn btn-outline-primary" href={{ route('albums.index') }} role="button">Progetti</a>
+                <a class="btn btn-outline-primary" href={{ route('albums.index') }} role="button">Albums</a>
                 <button type="submit" class="btn btn-outline-success">Inserisci</button>
             </div>
 

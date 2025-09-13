@@ -4,9 +4,9 @@
     <div class="container text-center my-4">
         <h3>{{ $album['name'] }}</h3>
         <p>{{ $album['published_year'] }}</p>
-        <p>{{ $album['n_songs'] }}</p>
+        <p>Songs : {{ $album['n_songs'] }}</p>
         @if (isset($album->genre->name))
-            <p>Tipo di progetto: {{ $album->genre->name }}</p>
+            <p>Genere: {{ $album->genre->name }}</p>
         @endif
 
         {{-- @dd($album->technologies()) --}}
@@ -16,7 +16,7 @@
                 style="background-color: {{ $technology['color'] }}">{{ $technology['name'] }}</span>
         @endforeach --}}
         <div class="my-2">
-            <a class="btn btn-outline-primary" href={{ route('albums.index') }} role="button">Progetti</a>
+            <a class="btn btn-outline-primary" href={{ route('albums.index') }} role="button">Albums</a>
             <a class="btn btn-outline-info" href={{ route('albums.edit', $album) }} role="button">Modifica</a>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -27,12 +27,11 @@
                 <div class="modal-dialog ">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminazione del
-                                progetto</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminazione dell'album</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Sei sicura di eliminare il progetto?
+                            Sei sicura di eliminare l'album?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Chiudi</button>

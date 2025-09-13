@@ -5,7 +5,7 @@
     <div class="container my-4">
         <div class="container d-flex space-between justify-content-between my-4 px-0">
             <h2 class="fs-4 text-secondary my-0">
-                {{ __('Progetti') }}
+                {{ __('Albums') }}
             </h2>
             <a class="btn btn-outline-primary" href={{ route('albums.create') }} role="button">Aggiungi</a>
         </div>
