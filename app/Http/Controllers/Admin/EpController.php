@@ -83,7 +83,9 @@ class EpController extends Controller
         $ep->n_songs = $data['n_songs'];
 
         if (array_key_exists('image', $data)) {
-            Storage::delete($ep['image']);
+            if (!empty($album['image']) && Storage::exists($ep['image'])) {
+                Storage::delete($ep['image']);
+            }
             $img_path = Storage::putFile('uploads', $data['image']);
             $ep->image = $img_path;
         }

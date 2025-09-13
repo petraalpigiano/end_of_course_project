@@ -90,7 +90,9 @@ class SingleController extends Controller
         $single->published_year = $data['published_year'];
 
         if (array_key_exists('image', $data)) {
-            Storage::delete($single['image']);
+            if (!empty($album['image']) && Storage::exists($single['image'])) {
+                Storage::delete($single['image']);
+            }
             $img_path = Storage::putFile('uploads', $data['image']);
             $single->image = $img_path;
         }

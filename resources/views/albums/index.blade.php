@@ -17,7 +17,7 @@
                             <img src="{{ asset('storage/' . $album['image']) }}" class="card-img-top" alt="...">
                         @endif
 
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">{{ $album['name'] }}</h5>
                             <p class="card-text">{{ $album['published_year'] }}</p>
                             {{-- <p class="card-text">Tipo di progetto: {{ $album->type->name }}</p> --}}

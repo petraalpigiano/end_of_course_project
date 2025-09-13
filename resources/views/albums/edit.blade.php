@@ -2,6 +2,7 @@
 
 @section('edit')
     <div class="container text-center">
+        <h4 class="mt-3">Modifica un Album</h4>
         <form class="my-3" action="{{ route('albums.update', $album) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -13,13 +14,13 @@
                     id="title" aria-describedby="title">
 
             </div>
-            <div>
-                <label for="inputYear" class="form-label">Anno</label>
+            <div class="mb-3 d-flex justify-content-center align-items-center">
+                <label for="inputYear" class="form-label me-2 mt-2 fw-bold">Anno</label>
                 <input type="text" class="form-control" id="inputYear" name="published_year"
                     value="{{ $album['published_year'] }}">
             </div>
-            <div>
-                <label for="inputYear" class="form-label">Canzoni</label>
+            <div class="mb-3 d-flex justify-content-center align-items-center">
+                <label for="inputYear" class="form-label me-2 mt-2 fw-bold">Canzoni</label>
                 <input type="text" class="form-control" id="inputYear" name="n_songs" value="{{ $album['n_songs'] }}">
             </div>
             <select name="genre_id" class="form-select " aria-label="Default select example">
@@ -29,8 +30,8 @@
                         {{ $genre['name'] }}</option>
                 @endforeach
             </select>
-            <div>
-                <label for="formFile" class="form-label">Aggiungi copertina</label>
+            <div class="mb-3 d-flex justify-content-center align-items-center">
+                <label for="formFile" class="form-label me-2 mt-2 fw-bold">Aggiungi copertina</label>
                 <input class="form-control" type="file" id="formFile" name="image">
                 @if ($album['image'])
                     <img class="img-thumbnail img-custom" src="{{ asset('storage/' . $album['image']) }}"
