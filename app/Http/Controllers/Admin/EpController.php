@@ -15,8 +15,8 @@ class EpController extends Controller
     public function index()
     {
         $eps = Ep::all();
-        dd($eps);
-        return view('prova.index', compact('eps'));
+        // dd($eps);
+        return view('eps.index', compact('eps'));
     }
 
     /**
@@ -24,7 +24,7 @@ class EpController extends Controller
      */
     public function create()
     {
-        return view('prova.create');
+        return view('eps.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class EpController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $newEp = new Ep();
 
@@ -48,7 +48,7 @@ class EpController extends Controller
 
         $newEp->save();
 
-        return redirect()->route('prova.show', $newEp->id);
+        return redirect()->route('eps.show', $newEp->id);
     }
 
     /**
@@ -57,7 +57,7 @@ class EpController extends Controller
     public function show(Ep $ep)
     {
         // dd($ep);
-        return view('prova.show', compact('ep'));
+        return view('eps.show', compact('ep'));
     }
 
     /**
@@ -67,7 +67,7 @@ class EpController extends Controller
     {
 
         // dd($ep);
-        return view('prova.create', compact('ep'));
+        return view('eps.edit', compact('ep'));
     }
 
     /**
@@ -76,7 +76,7 @@ class EpController extends Controller
     public function update(Request $request, Ep $ep)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $ep->name = $data['name'];
         $ep->published_year = $data['published_year'];
@@ -92,7 +92,7 @@ class EpController extends Controller
 
         $ep->update();
 
-        return redirect()->route('prova.show', $ep->id);
+        return redirect()->route('eps.show', $ep->id);
     }
 
     /**
@@ -106,6 +106,6 @@ class EpController extends Controller
 
         $ep->delete();
 
-        return redirect()->route('prova.index');
+        return redirect()->route('eps.index');
     }
 }

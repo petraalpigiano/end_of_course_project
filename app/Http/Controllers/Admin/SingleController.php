@@ -16,8 +16,8 @@ class SingleController extends Controller
     public function index()
     {
         $singles = Single::all();
-        dd($singles);
-        return view('prova.index', compact('singles'));
+        // dd($singles);
+        return view('singles.index', compact('singles'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SingleController extends Controller
     public function create()
     {
         $genres = Genre::all();
-        return view('prova.create', compact('genres'));
+        return view('singles.create', compact('genres'));
     }
 
     /**
@@ -35,7 +35,7 @@ class SingleController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $newSingle = new Single();
 
@@ -52,7 +52,7 @@ class SingleController extends Controller
 
         $newSingle->save();
 
-        return redirect()->route('prova.show', $newSingle->id);
+        return redirect()->route('singles.show', $newSingle->id);
     }
 
     /**
@@ -61,7 +61,7 @@ class SingleController extends Controller
     public function show(Single $single)
     {
         // dd($single);
-        return view('prova.show', compact('single', 'genres'));
+        return view('singles.show', compact('single'));
     }
 
     /**
@@ -71,7 +71,7 @@ class SingleController extends Controller
     {
         $genres = Genre::all();
         // dd($single);
-        return view('prova.create', compact('single', 'genres'));
+        return view('singles.edit', compact('single', 'genres'));
     }
 
     /**
@@ -80,7 +80,7 @@ class SingleController extends Controller
     public function update(Request $request, Single $single)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
 
         if ($request->has('genre_id')) {
@@ -99,7 +99,7 @@ class SingleController extends Controller
 
         $single->update();
 
-        return redirect()->route('prova.show', $single->id);
+        return redirect()->route('singles.show', $single->id);
     }
 
     /**
@@ -113,6 +113,6 @@ class SingleController extends Controller
 
         $single->delete();
 
-        return redirect()->route('prova.index');
+        return redirect()->route('singles.index');
     }
 }

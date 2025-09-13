@@ -14,8 +14,8 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        dd($genres);
-        return view('prova.index', compact('genres'));
+        // dd($genres);
+        return view('genres.index', compact('genres'));
     }
 
     /**
@@ -23,7 +23,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('prova.create');
+        return view('genres.create');
     }
 
     /**
@@ -32,7 +32,7 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $newGenre = new Genre();
 
@@ -40,7 +40,7 @@ class GenreController extends Controller
 
         $newGenre->save();
 
-        return redirect()->route('prova.show', $newGenre->id);
+        return redirect()->route('genres.show', $newGenre->id);
     }
 
     /**
@@ -49,7 +49,7 @@ class GenreController extends Controller
     public function show(Genre $genre)
     {
         // dd($genre);
-        return view('prova.show', compact('genre'));
+        return view('genres.show', compact('genre'));
     }
 
     /**
@@ -58,7 +58,7 @@ class GenreController extends Controller
     public function edit(Genre $genre)
     {
         // dd($genre);
-        return view('prova.create', compact('genre'));
+        return view('genres.edit', compact('genre'));
     }
 
     /**
@@ -67,13 +67,13 @@ class GenreController extends Controller
     public function update(Request $request, Genre $genre)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $genre->name = $data['name'];
 
         $genre->update();
 
-        return redirect()->route('prova.show', $genre->id);
+        return redirect()->route('genres.show', $genre->id);
     }
 
     /**
@@ -83,6 +83,6 @@ class GenreController extends Controller
     {
         $genre->delete();
 
-        return redirect()->route('prova.index');
+        return redirect()->route('genres.index');
     }
 }
