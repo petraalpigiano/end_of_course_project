@@ -13,7 +13,10 @@
             @foreach ($albums as $album)
                 <div class="col">
                     <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
+                        @if ($album['image'])
+                            <img src="{{ asset('storage/' . $album['image']) }}" class="card-img-top" alt="...">
+                        @endif
+
                         <div class="card-body">
                             <h5 class="card-title">{{ $album['name'] }}</h5>
                             <p class="card-text">{{ $album['published_year'] }}</p>

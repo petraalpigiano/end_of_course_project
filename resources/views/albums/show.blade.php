@@ -2,6 +2,9 @@
 
 @section('show')
     <div class="container text-center my-4">
+        @if ($album['image'])
+            <img src="{{ asset('storage/' . $album['image']) }}" class="card-img-top img-custom2" alt="...">
+        @endif
         <h3>{{ $album['name'] }}</h3>
         <p>{{ $album['published_year'] }}</p>
         <p>Songs : {{ $album['n_songs'] }}</p>

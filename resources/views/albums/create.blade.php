@@ -2,7 +2,7 @@
 
 @section('create')
     <div class="container text-center">
-        <form class="my-3" action="{{ route('albums.store') }}" method="POST">
+        <form class="my-3" action="{{ route('albums.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3 d-flex justify-content-center align-items-center">
                 <label for="title" class="form-label me-2 mt-2 fw-bold">Titolo</label>
@@ -24,6 +24,10 @@
                     <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
                 @endforeach
             </select>
+            <div>
+                <label for="formFile" class="form-label">Aggiungi copertina</label>
+                <input class="form-control" type="file" id="formFile" name="image">
+            </div>
             {{-- @foreach ($technologies as $technology)
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="{{ $technology['id'] }}" id="checkDefault"

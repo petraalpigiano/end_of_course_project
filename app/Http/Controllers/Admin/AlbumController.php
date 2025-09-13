@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumController extends Controller
 {
@@ -44,6 +45,12 @@ class AlbumController extends Controller
         $newAlbum->published_year = $data['published_year'];
         $newAlbum->n_songs = $data['n_songs'];
 
+        if (array_key_exists('image', $data)) {
+            $img_path = Storage::putFile('uploads', $data['image']);
+            $newAlbum->image = $img_path;
+        }
+
+
         $newAlbum->save();
 
         return redirect()->route('albums.show', $newAlbum->id);
@@ -81,6 +88,14 @@ class AlbumController extends Controller
         $album->published_year = $data['published_year'];
         $album->n_songs = $data['n_songs'];
 
+        if (array_key_exists('image', $data)) {
+            Storage::delete($album['image']);
+            $img_path = Storage::putFile('uploads', $data['image']);
+            $album->image = $img_path;
+        }
+
+
+
         $album->update();
 
         return redirect()->route('albums.show', $album->id);
@@ -91,6 +106,10 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
+        if ($album['image']) {
+            Storage::delete($album['image']);
+        }
+
         $album->delete();
 
         return redirect()->route('albums.index');

@@ -2,7 +2,7 @@
 
 @section('edit')
     <div class="container text-center">
-        <form class="my-3" action="{{ route('albums.update', $album) }}" method="POST">
+        <form class="my-3" action="{{ route('albums.update', $album) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             @method('PUT')
@@ -15,11 +15,12 @@
             </div>
             <div>
                 <label for="inputYear" class="form-label">Anno</label>
-                <input type="text" class="form-control" id="inputYear" value="{{ $album['published_year'] }}">
+                <input type="text" class="form-control" id="inputYear" name="published_year"
+                    value="{{ $album['published_year'] }}">
             </div>
             <div>
                 <label for="inputYear" class="form-label">Canzoni</label>
-                <input type="text" class="form-control" id="inputYear" value="{{ $album['n_songs'] }}">
+                <input type="text" class="form-control" id="inputYear" name="n_songs" value="{{ $album['n_songs'] }}">
             </div>
             <select name="genre_id" class="form-select " aria-label="Default select example">
                 <option value="">Scegli un genere</option>
@@ -28,6 +29,14 @@
                         {{ $genre['name'] }}</option>
                 @endforeach
             </select>
+            <div>
+                <label for="formFile" class="form-label">Aggiungi copertina</label>
+                <input class="form-control" type="file" id="formFile" name="image">
+                @if ($album['image'])
+                    <img class="img-thumbnail img-custom" src="{{ asset('storage/' . $album['image']) }}"
+                        class="card-img-top" alt="...">
+                @endif
+            </div>
             {{-- @foreach ($technologies as $technology)
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="{{ $technology['id'] }}" id="checkDefault"

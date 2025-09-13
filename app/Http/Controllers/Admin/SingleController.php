@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Single;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SingleController extends Controller
 {
@@ -43,6 +44,11 @@ class SingleController extends Controller
         }
         $newSingle->name = $data['name'];
         $newSingle->published_year = $data['published_year'];
+
+        if (array_key_exists('image', $data)) {
+            $img_path = Storage::putFile('uploads', $data['image']);
+            $newSingle->image = $img_path;
+        }
 
         $newSingle->save();
 
@@ -83,6 +89,12 @@ class SingleController extends Controller
         $single->name = $data['name'];
         $single->published_year = $data['published_year'];
 
+        if (array_key_exists('image', $data)) {
+            Storage::delete($single['image']);
+            $img_path = Storage::putFile('uploads', $data['image']);
+            $single->image = $img_path;
+        }
+
         $single->update();
 
         return redirect()->route('prova.show', $single->id);
@@ -93,6 +105,10 @@ class SingleController extends Controller
      */
     public function destroy(Single $single)
     {
+        if ($single['image']) {
+            Storage::delete($single['image']);
+        }
+
         $single->delete();
 
         return redirect()->route('prova.index');

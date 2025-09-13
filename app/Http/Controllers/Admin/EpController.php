@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ep;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EpController extends Controller
 {
@@ -39,6 +40,11 @@ class EpController extends Controller
         $newEp->name = $data['name'];
         $newEp->published_year = $data['published_year'];
         $newEp->n_songs = $data['n_songs'];
+
+        if (array_key_exists('image', $data)) {
+            $img_path = Storage::putFile('uploads', $data['image']);
+            $newEp->image = $img_path;
+        }
 
         $newEp->save();
 
@@ -76,6 +82,12 @@ class EpController extends Controller
         $ep->published_year = $data['published_year'];
         $ep->n_songs = $data['n_songs'];
 
+        if (array_key_exists('image', $data)) {
+            Storage::delete($ep['image']);
+            $img_path = Storage::putFile('uploads', $data['image']);
+            $ep->image = $img_path;
+        }
+
         $ep->update();
 
         return redirect()->route('prova.show', $ep->id);
@@ -86,6 +98,10 @@ class EpController extends Controller
      */
     public function destroy(Ep $ep)
     {
+        if ($ep['image']) {
+            Storage::delete($ep['image']);
+        }
+
         $ep->delete();
 
         return redirect()->route('prova.index');
