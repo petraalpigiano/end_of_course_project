@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Route;
 
 // ALBUMS
 Route::get('albums', [MusicController::class, 'indexAlbums']);
-Route::get('albums/{id}', [MusicController::class, 'showAlbums']);
+Route::get('albums/{id}', [MusicController::class, 'showAlbum']);
 
 // EPS
 
 Route::get('eps', [MusicController::class, 'indexEps']);
-Route::get('eps/{id}', [MusicController::class, 'showEps']);
+Route::get('eps/{id}', [MusicController::class, 'showEp']);
 
 // SINGLES
 Route::get('singles', [MusicController::class, 'indexSingles']);
-Route::get('singles/{id}', [MusicController::class, 'showSingles']);
+Route::get('singles/{id}', [MusicController::class, 'showSingle']);
