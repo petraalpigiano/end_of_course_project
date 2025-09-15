@@ -21,9 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('albums', AlbumController::class);
-Route::resource('singles', SingleController::class);
-Route::resource('eps', EpController::class);
-Route::resource('genres', GenreController::class);
+Route::resource('albums', AlbumController::class)->middleware(['auth', 'verified']);
+Route::resource('singles', SingleController::class)->middleware(['auth', 'verified']);;
+Route::resource('eps', EpController::class)->middleware(['auth', 'verified']);;
+Route::resource('genres', GenreController::class)->middleware(['auth', 'verified']);;
 
 require __DIR__ . '/auth.php';
