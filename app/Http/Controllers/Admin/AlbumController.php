@@ -89,7 +89,7 @@ class AlbumController extends Controller
         $album->n_songs = $data['n_songs'];
 
         if (array_key_exists('image', $data)) {
-            if (!empty($album['image']) && Storage::exists($album['image'])) {
+            if (!empty($album['image']) && Storage::exists($album['image'])) { // se la chiave image di album non è vuota, quindi alla creazione della risorsa è stata inserita un immagine
                 Storage::delete($album['image']);
             }
             $img_path = Storage::putFile('uploads', $data['image']);
